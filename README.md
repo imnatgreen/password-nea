@@ -8,6 +8,7 @@ Pull the repo and you're done!
 ```bash
 git pull https://github.com/nathangreen06/password-nea
 ```
+If you are unfamiliar with git (it's ok!) then you should probably use a tool like GitHub Desktop ([download](https://desktop.github.com/))
 
 ## Usage
 
