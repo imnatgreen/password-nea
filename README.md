@@ -14,3 +14,12 @@ If you are unfamiliar with git (it's ok!) then you should probably use a tool li
 
 - I recommend that you use Microsoft's Visual Studio Code (VSCode)
 - You can [download VSCode completely free here](https://code.visualstudio.com/)
+
+## Task list
+
+- [x] Task 1 - Menu
+- [x] Task 2 - Check password
+- [x] Task 3 - Calculate points
+- [x] Task 4 - Check strength
+- [ ] Task 5 - Generate password
+- [ ] Task 6 - Quit
