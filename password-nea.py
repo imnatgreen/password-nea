@@ -36,6 +36,40 @@ def checkPass():
     except:
         print("Password was not valid, returning to menu.\n")
         menu()
+    print("Your password is " + calcPoints(passToCheck)[1] + " (" +
+          str(calcPoints(passToCheck)[0]) + " points)\n")
+    menu()
+
+
+def calcPoints(password):
+    points = 0
+    row1 = "qwertyuiop"
+    row2 = "asdfghjkl"
+    row3 = "zxcvbnm"
+    contents = {"AZ": False, "az": False, "09": False, "Sm": False}
+    contents["AZ"] = True if re.search(r'[A-Z]',
+                                       password) is not None else False
+    contents["az"] = True if re.search(r'[a-z]',
+                                       password) is not None else False
+    contents["09"] = True if re.search(r'[0-9]',
+                                       password) is not None else False
+    contents["Sm"] = True if re.search(r'[!$%^&*()\-_=+]',
+                                       password) is not None else False
+    for i in contents:
+        if contents[i] == True: points += 5
+    if points >= 20: points += 5
+    if re.fullmatch(r'[A-Za-z]+', password): points -= 5
+    if re.fullmatch(r'[0-9]+', password): points -= 5
+    if re.fullmatch(r'[!$%^&*()\-_=+]+', password): points -= 5
+
+    for i in range(0, (len(password) - 3)):
+        testStr = password[i:i + 3].lower()
+        if re.search(rf'{re.escape(testStr)}', row1) is not None: points -= 5
+        if re.search(rf'{re.escape(testStr)}', row2) is not None: points -= 5
+        if re.search(rf'{re.escape(testStr)}', row3) is not None: points -= 5
+    strength = "strong" if points > 20 else "weak" if points <= 0 else "medium"
+    rtrn = [points, strength]
+    return (rtrn)
 
 
 menu()
