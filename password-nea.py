@@ -1,29 +1,4 @@
-import re
-
-
-def menu():
-    print("Welcome, please choose an option:")
-    print("[1] Check Password")
-    print("[2] Generate Password")
-    print("[3] Quit")
-    option = 0
-    while option == 0:
-        optTemp = input("(1/2/3) >> ")
-        try:
-            if optTemp[0] == "1" or optTemp[0].lower() == "a":
-                option = 1
-            elif optTemp[0] == "2" or optTemp[0].lower() == "b":
-                option = 2
-            elif optTemp[0] == "3" or optTemp[0].lower() == "c":
-                option = 3
-            else:
-                raise (ValueError)
-        except:
-            print("Invalid input, try again")
-    if option == 1:
-        checkPass()
-    #if option == 2:
-    #    genPass()
+import re, random, string
 
 
 def checkPass():
@@ -33,12 +8,10 @@ def checkPass():
             raise ValueError
         if len(passToCheck) < 8 or len(passToCheck) > 24:
             raise ValueError
+        print("Your password is " + calcPoints(passToCheck)[1] + " (" +
+              str(calcPoints(passToCheck)[0]) + " points)\n")
     except:
         print("Password was not valid, returning to menu.\n")
-        menu()
-    print("Your password is " + calcPoints(passToCheck)[1] + " (" +
-          str(calcPoints(passToCheck)[0]) + " points)\n")
-    menu()
 
 
 def calcPoints(password):
@@ -72,4 +45,42 @@ def calcPoints(password):
     return (rtrn)
 
 
-menu()
+def genPass():
+    strength = "weak"
+    symbols = "!$%^&*()-_=+"
+    while strength != "strong":
+        genPass = ''.join(
+            random.choices(string.ascii_letters + string.digits + symbols,
+                           k=random.randint(8, 12)))
+        strength = calcPoints(genPass)[1]
+    print("Your new password is: " + genPass + " (" +
+          str(calcPoints(genPass)[0]) + " points)\n")
+
+
+while True:
+    print("Welcome, please choose an option:")
+    print("[1] Check Password")
+    print("[2] Generate Password")
+    print("[3] Quit")
+    option = 0
+    while option == 0:
+        optTemp = input("(1/2/3) >> ")
+        try:
+            if optTemp[0] == "1" or optTemp[0].lower() == "c":
+                option = 1
+            elif optTemp[0] == "2" or optTemp[0].lower() == "g":
+                option = 2
+            elif optTemp[0] == "3" or optTemp[0].lower() == "q":
+                option = 3
+            else:
+                raise (ValueError)
+        except:
+            print("Invalid input, try again")
+    print("\n\n\n\n\n\n\n\n\n\n")
+    if option == 1:
+        checkPass()
+    if option == 2:
+        genPass()
+    if option == 3:
+        print("Goodbye, exiting...")
+        break
