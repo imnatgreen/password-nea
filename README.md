@@ -21,5 +21,5 @@ If you are unfamiliar with git (it's ok!) then you should probably use a tool li
 - [x] Task 2 - Check password
 - [x] Task 3 - Calculate points
 - [x] Task 4 - Check strength
-- [ ] Task 5 - Generate password
-- [ ] Task 6 - Quit
+- [x] Task 5 - Generate password
+- [x] Task 6 - Quit
